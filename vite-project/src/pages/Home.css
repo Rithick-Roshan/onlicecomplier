@@ -1,0 +1,85 @@
+.home_container{
+    width: 100%;
+    height:100vh;
+    background-color: rgba(0,0,0,0.1);
+}   
+
+.home_headder{
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.home_headder .home_buttons{
+    display: flex;
+    gap:30px;
+    
+
+}
+.home_headder .home_buttons button{
+    background-color: rgba(0,0,0,0.3);
+    width: 80px;
+    height: 30px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    transition: linear 0.5s;
+}
+
+.home_headder .home_buttons button:hover{
+    background-color: rgba(0,0,0,0.5);
+}
+
+.home_about{
+    width: 100%;
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.2);
+    gap:15px ;
+}
+
+.home_about button{
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    box-shadow: 3px 5px rgba(0,0,0,0.1);
+    background: rgb(27, 210, 27);
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 10px;
+    transition: linear 0.5s;
+
+}
+
+.home_about button:hover{
+    background-color: green;
+    width: 120px;
+    height: 45px;
+    top: 10px;
+}
+
+.home_boxes{
+    display: flex;
+    width: 100%;
+    height: 30vh;
+    background-color: white;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.home_boxes .b1{
+    display: flex;
+    background-color: rgba(0,0,0,0.1);
+    width: 30%;
+    height: 80%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
