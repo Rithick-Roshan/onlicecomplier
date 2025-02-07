@@ -1,27 +1,49 @@
 # Pages Structure
 
-## 1. Landing Page
+## 1. Home Page
+- Login or signup buttons
 - Quick access compiler
 - Featured languages
-- Getting started guide
+ 
+ <img src="../wireframe/Home.png">
 
-## 2. Code Editor
+## 2. Login 
+- login by emailand password.
+- login by google or github.
+ 
+<img src="../wireframe/Login.png">
+
+## 3. SingnUp
+- login by emailand password.
+- login by google or github.
+ 
+ <img src="../wireframe/signUp.png">
+
+## 4. Code Editor
 - Code input area
 - Language selector
 - Input/Output panels
 - Run controls
+ 
+ <img src="../wireframe/codeEditor.png">
 
-## 3. Settings
+## 5. Settings
 - Editor preferences
 - Theme selection
 - Keyboard shortcuts
+ 
+ <img src="../wireframe/setting.png">
 
-## 4. Documentation
+## 6. Documentation
 - Language guides
 - Examples
 - API docs
+ 
+ <img src="../wireframe/documentation.png">
 
-## 5. Profile
+## 7. Profile
 - Saved codes
 - History
 - Preferences
+ 
+ <img src="../wireframe/profile.png">
