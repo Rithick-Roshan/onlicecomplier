@@ -1,6 +1,8 @@
 # Navigation Structure
 
 ## Main Navigation
+- Home →signup→login →Quick compiler access
+- Home →login →Quick compiler access
 - Home → Quick compiler access
 - Editor → Full featured IDE
 - Settings → User preferences
