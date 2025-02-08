@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">
+  <!-- Background -->
+  <rect width="1600" height="900" fill="#f4f4f4"/>
+  
+  <!-- Title -->
+  <text x="800" y="50" text-anchor="middle" font-size="32" font-weight="bold" fill="#333">
+    DC Machine Monitoring System - Comprehensive Architecture
+  </text>
+
+  <!-- Power Section -->
+  <g transform="translate(100, 550)">
+    <rect x="0" y="0" width="250" height="150" fill="#ffecb3" stroke="#333" stroke-width="3" rx="15"/>
+    <text x="125" y="30" text-anchor="middle" font-size="22" font-weight="bold" fill="#333">Power Section</text>
+    
+    <!-- Battery Icon -->
+    <g transform="translate(80, 50)">
+      <rect x="0" y="0" width="80" height="50" fill="#ffffff" stroke="#333" stroke-width="2" rx="10"/>
+      <rect x="35" y="-10" width="10" height="10" fill="#333"/>
+      <line x1="20" y1="25" x2="60" y2="25" stroke="#333" stroke-width="3"/>
+    </g>
+    
+    <text x="125" y="140" text-anchor="middle" font-size="18" fill="#333">Battery & Power Supply</text>
+  </g>
+
+  <!-- DC Machine Component with Fan -->
+  <g transform="translate(400, 150)">
+    <rect x="0" y="0" width="300" height="350" fill="#e0e0e0" stroke="#333" stroke-width="3" rx="15"/>
+    <text x="150" y="40" text-anchor="middle" font-size="22" font-weight="bold" fill="#333">DC Machine</text>
+    
+    <!-- Fan -->
+    <g transform="translate(125, 150)" fill="#666">
+      <circle cx="50" cy="20" r="15" fill="#444"/>
+      <path d="M50 0 L70 40 L30 40 Z" transform="rotate(0 50 20)">
+        <animateTransform attributeName="transform" type="rotate" from="0 50 20" to="360 50 20" dur="2s" repeatCount="indefinite"/>
+      </path>
+      <path d="M50 0 L70 40 L30 40 Z" transform="rotate(120 50 20)">
+        <animateTransform attributeName="transform" type="rotate" from="120 50 20" to="480 50 20" dur="2s" repeatCount="indefinite"/>
+      </path>
+      <path d="M50 0 L70 40 L30 40 Z" transform="rotate(240 50 20)">
+        <animateTransform attributeName="transform" type="rotate" from="240 50 20" to="600 50 20" dur="2s" repeatCount="indefinite"/>
+      </path>
+    </g>
+  </g>
+
+  <!-- Sensor Array -->
+  <g transform="translate(800, 150)">
+    <rect x="0" y="0" width="350" height="450" fill="#e6f2ff" stroke="#333" stroke-width="3" rx="15"/>
+    <text x="175" y="40" text-anchor="middle" font-size="22" font-weight="bold" fill="#333">Sensor Array</text>
+  </g>
+
+  <!-- Microcontroller (ESP32) -->
+  <g transform="translate(1200, 150)">
+    <rect x="0" y="0" width="250" height="250" fill="#e0f0ff" stroke="#333" stroke-width="3" rx="15"/>
+    <text x="125" y="40" text-anchor="middle" font-size="22" font-weight="bold" fill="#333">Microcontroller</text>
+  </g>
+
+  <!-- Cloud Infrastructure -->
+  <g transform="translate(600, 650)">
+    <rect x="0" y="0" width="600" height="200" fill="#e6ffe6" stroke="#333" stroke-width="3" rx="15"/>
+    <text x="300" y="40" text-anchor="middle" font-size="22" font-weight="bold" fill="#333">Cloud Infrastructure</text>
+  </g>
+
+  <!-- Power Connection Lines -->
+  <path d="M225 550 L225 400 L400 400" stroke="#333" stroke-width="3" stroke-dasharray="8,5"/>
+  <path d="M225 550 L225 500 L800 500" stroke="#333" stroke-width="3" stroke-dasharray="8,5"/>
+
+  <!-- Component Connection Lines -->
+  <path d="M700 300 L800 300" stroke="#666" stroke-width="2" stroke-dasharray="10,5"/>
+  <path d="M1150 250 L1200 250" stroke="#666" stroke-width="2" stroke-dasharray="10,5"/>
+  <path d="M900 750 L1000 750" stroke="#666" stroke-width="2" stroke-dasharray="10,5"/>
+</svg>
