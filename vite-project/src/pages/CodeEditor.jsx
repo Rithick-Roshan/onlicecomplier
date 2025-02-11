@@ -1,201 +1,78 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { ChevronDown } from 'lucide-react';
 
-const CodeCompiler = () => {
-  const [language, setLanguage] = useState('javascript');
-  const [output, setOutput] = useState('');
-  const [customInput, setCustomInput] = useState('');
-  const [theme, setTheme] = useState('vs-light');
-  const [fontSize, setFontSize] = useState(14);
-  const [code, setCode] = useState('// Write your code here');
-  
-  const editorRef = useRef(null);
-  const containerRef = useRef(null);
-
-  const languages = [
-    'javascript',
-    'python',
-    'java',
-    'cpp',
-    'typescript'
-  ];
-
-  useEffect(() => {
-    // Load Monaco Editor from CDN
-    const script = document.createElement('script');
-    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/loader.js';
-    script.async = true;
-    
-    script.onload = () => {
-      window.require.config({
-        paths: { vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs' }
-      });
-
-      window.require(['vs/editor/editor.main'], () => {
-        if (!containerRef.current) return;
-
-        // Initialize the editor
-        editorRef.current = window.monaco.editor.create(containerRef.current, {
-          value: code,
-          language,
-          theme,
-          fontSize: fontSize,
-          minimap: { enabled: false },
-          scrollBeyondLastLine: false,
-          automaticLayout: true
-        });
-
-        // Set up change event handler
-        editorRef.current.onDidChangeModelContent(() => {
-          setCode(editorRef.current.getValue());
-        });
-      });
-    };
-
-    document.body.appendChild(script);
-
-    // Cleanup
-    return () => {
-      if (editorRef.current) {
-        editorRef.current.dispose();
-      }
-      document.body.removeChild(script);
-    };
-  }, []); // Empty dependency array means this effect runs once on mount
-
-  // Update editor language when language prop changes
-  useEffect(() => {
-    if (editorRef.current) {
-      const model = editorRef.current.getModel();
-      if (model) {
-        window.monaco.editor.setModelLanguage(model, language);
-      }
+import EditorArea from '../components/EditorArea';
+import OutputArea from '../components/OutputArea';
+import { useState } from 'react';
+import './Code.css';
+import { LANGUAGE_VERSION ,LANGUAGE_SNIPPETS} from '../constans';
+import { runCode } from '../api';
+function CodeEditor() {
+  const [lang, setLang] = useState('javascript');
+  const languages=Object.entries(LANGUAGE_VERSION);
+  const [input, setInput] = useState("");
+  const [data, setData] = useState("");
+  const [result, setResult] = useState("");
+  const [iserror,setIsError]=useState(false);
+  const [theme, setTheme] = useState("vs-light");
+  // console.log(data);
+ 
+  const excute = async()=>{
+    try{
+      const {run:response} = await runCode(lang,data,input);
+      if(response.code ===1)  setIsError(true);
+      else setIsError(false);
+      setResult(response.output.split("\n") || response.error || "No output");
     }
-  }, [language]);
-
-  // Update editor theme when theme changes
-  useEffect(() => {
-    if (editorRef.current) {
-      window.monaco.editor.setTheme(theme);
+    catch(e){
+      setIsError(true);
+      console.log(e);
+      setResult("Something went wrong");
     }
-  }, [theme]);
-
-  const handleRun = () => {
-    // This is a mock implementation
-    // In a real app, you'd send the code to a backend service
-    setOutput(`Running ${language} code...\nCode:\n${code}\nCustom input: ${customInput}`);
-  };
-
-  const handleClear = () => {
-    if (editorRef.current) {
-      editorRef.current.setValue('');
-    }
-    setOutput('');
-    setCustomInput('');
-  };
-
-  const toggleTheme = () => {
-    setTheme(theme === 'vs-light' ? 'vs-dark' : 'vs-light');
-  };
-
+  }
   return (
-    <div className="p-4 max-w-7xl mx-auto">
-      {/* Header */}
-      <h1 className="text-2xl font-semibold mb-6">Code Compiler</h1>
-
-      {/* Language Selector */}
-      <div className="relative w-48 mb-4">
-        <select
-          value={language}
-          onChange={(e) => setLanguage(e.target.value)}
-          className="w-full p-2 bg-gray-100 rounded appearance-none cursor-pointer"
-        >
-          {languages.map(lang => (
-            <option key={lang} value={lang}>
-              {lang.charAt(0).toUpperCase() + lang.slice(1)}
-            </option>
-          ))}
-        </select>
-        <ChevronDown className="absolute right-2 top-3 w-4 h-4" />
+    <div className={`editor_container ${theme}`}>
+    <div className='editor_top'>
+      <div className='editor_header'>
+        <h1>Code Compiler</h1>
       </div>
-
-      {/* Main Content */}
-      <div className="grid grid-cols-3 gap-4">
-        {/* Editor Section */}
-        <div className="col-span-2 space-y-4">
-          {/* Code Editor */}
-          <div className="border rounded">
-            <div className="bg-gray-100 p-2 border-b">Code Editor</div>
-            <div 
-              ref={containerRef} 
-              className="h-96"
-            />
-          </div>
-
-          {/* Buttons */}
-          <div className="flex gap-2">
-            <button
-              onClick={handleRun}
-              className="px-6 py-2 bg-green-500 text-white rounded hover:bg-green-600"
-            >
-              Run
-            </button>
-            <button
-              onClick={handleClear}
-              className="px-6 py-2 bg-gray-200 rounded hover:bg-gray-300"
-            >
-              Clear
-            </button>
-          </div>
-
-          {/* Custom Input */}
-          <div className="border rounded">
-            <div className="bg-gray-100 p-2 border-b">Custom Input</div>
-            <textarea
-              value={customInput}
-              onChange={(e) => setCustomInput(e.target.value)}
-              className="w-full h-32 p-2 resize-none"
-              placeholder="Enter your input here..."
-            />
-          </div>
-        </div>
-
-        {/* Right Panel */}
-        <div className="space-y-4">
-          {/* Output */}
-          <div className="border rounded">
-            <div className="bg-gray-100 p-2 border-b">Output</div>
-            <div className="h-96 p-2 font-mono whitespace-pre-wrap">
-              {output}
-            </div>
-          </div>
-
-          {/* Settings */}
-          <div className="border rounded">
-            <div className="bg-gray-100 p-2 border-b">Settings</div>
-            <div className="p-4 space-y-4">
-              {/* Theme Toggle */}
-              <div className="flex justify-between items-center">
-                <span>Theme:</span>
-                <button
-                  onClick={toggleTheme}
-                  className="text-blue-600 hover:underline"
-                >
-                  {theme === 'vs-light' ? 'Light/Dark' : 'Dark/Light'}
-                </button>
+      <label>
+          <p>Select your language:</p>
+          <select onChange={(e)=>setLang(e.target.value)} value={lang}>
+            {languages.map(([key,value])=>(
+              <option key={key} value={key}>{key+" "+value}</option>
+            ))}
+            {/* <option value="javascript" >javascript</option>
+            <option value="python">python</option>
+            <option value="java">java</option>
+            <option value="c">C</option>
+            <option value="c++">C++</option> */}
+          </select>
+      </label>
+    </div>
+      <div className='editor_main'>
+           <EditorArea language={lang} def={LANGUAGE_SNIPPETS[lang]}  senData={(e)=>setData(e)} theme={theme}/>
+           <OutputArea rs={result} err={iserror}/>
+      </div>
+      <div className='editor_footer'>
+          <div className='editor_footer_left'>
+              <div className='editor_footer_left_buttons'>
+                 <button className='editor_run_button' onClick={excute}>Run</button>
+                 <button className='editor_clear_button'>clear</button>
               </div>
-
-              {/* Font Size */}
-              <div className="flex justify-between items-center">
-                <span>Font Size:</span>
-                <span>{fontSize}px</span>
+              <div className='editor_footer_left_input'>
+                <input type="text" placeholder="Enter input here" value={input} onChange={(e)=>setInput(e.target.value)}/>
               </div>
-            </div>
           </div>
-        </div>
+          <div className='editor_footer_right'>
+              <h2>Select theme</h2>
+              <select onClick={(e)=>setTheme(e.target.value)} >
+                <option value="vs-light">Light</option>
+                <option value="vs-dark">Dark</option>
+              </select>
+          </div>
       </div>
     </div>
-  );
-};
 
-export default CodeCompiler;
+  )
+}
+
+export default CodeEditor;
