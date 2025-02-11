@@ -14,7 +14,10 @@ function Signup(){
                     <input type="email" placeholder="Enter Your Email" />
                 </div>
                 <div class="login_input">
-                    <input type="password" placeholder="Enter Your Pass" />
+                    <input type="password" placeholder="Password" />
+                </div>
+                <div class="login_input">
+                    <input type="password" placeholder="Confirm Pass" />
                 </div>
                 <div class="login_button">
                     <button class="login_button" ><a href="www.google.com">Sigup</a></button>
