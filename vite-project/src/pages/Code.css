@@ -1,0 +1,33 @@
+.output-content {
+    height: 24rem;
+    padding: 0.5rem;
+    font-family: monospace;
+    white-space: pre-wrap;
+  }
+  
+  .settings-content {
+    padding: 1rem;
+  }
+  
+  .setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .setting-item:last-child {
+    margin-bottom: 0;
+  }
+  
+  .theme-toggle {
+    color: #2563eb;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  
+  .theme-toggle:hover {
+    text-decoration: underline;
+  }
