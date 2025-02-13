@@ -12,7 +12,10 @@
   "dependencies": {
     "@monaco-editor/react": "^4.6.0",
     "@tailwindcss/vite": "^4.0.4",
+<<<<<<< HEAD
     "lucide-react": "^0.475.0",
+=======
+>>>>>>> 4895dcc22eb42748cd89f707286e30a135a72f69
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tailwindcss": "^4.0.4"
