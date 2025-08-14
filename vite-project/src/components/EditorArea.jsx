@@ -19,9 +19,9 @@ function EditorArea({language,def,senData,theme}) {
   return (
   <>
     <Editor
-      height="70vh"
+      height="60vh"
       language={language}
-      width="70%"
+      width="100%"
       value={value}
       onChange={(newValue) => setValue(newValue)}
       onMount={onMount}

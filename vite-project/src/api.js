@@ -13,7 +13,6 @@ export const runCode = async (language, code,input) =>{
    "version": LANGUAGE_VERSION[language],
    "files": [{
       "content": code,
-      "name":"Main."+language
   },
   ],
   "stdin": formattedInput,

@@ -1,116 +1,198 @@
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
-.login_conatiner{
+
+.login_conatiner {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color:rgba(0,0,0,0.1);
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 20px;
 }
 
-.login{
-  background-color:rgba(0,0,0,0.1);
-  width: 500px;
-  height: 576px;
+.login {
+  background: white;
+  width: 100%;
+  max-width: 450px;
+  min-height: 550px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap:5%;
+  padding: 40px 30px;
+  gap: 25px;
+  position: relative;
+  overflow: hidden;
 }
 
-.Login_header{
-  padding-top: 10px;
-}
-.login_form{
- display: flex;
- flex-direction: column;
- gap: 10px;
- width: 80%;
+.Login_header {
+  color: #2d3748;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
-.login_input{
-  padding-top:10px; 
-  padding-bottom: 10px;
-  width: 100%;
-}
-
-
-.login_input input{
-  width: 100%;
-  padding: 10px 5px;
-  width: 100%;
-  font-size: large;
-  border: none;
-  border-bottom: 2px solid;
-  transition: linear .5s;
-  outline: none;
-}
-
-.login_input input:hover{
-  height: 102%;
-  width: 102%;
-  background-color: rgba(0,0,0,0.1);
-}
-.login_input input:focus{
-  outline: none;
-}
-
-.login_button{
-  padding-top:10px; 
-  padding-bottom: 10px;
-  width: 100%;
-  outline: none;
-
-}
-.login_button button{
-  background:rgb(0, 162, 255) ;
-  border-radius: 10px;
-  transition: linear .5s;
-  cursor: pointer;
-  border: 0px solid;
-  box-shadow: 2px 5px  rgba(0,0,0,0.2);
-
-}
-.login_button button:hover{
-  background:rgb(35, 118, 206) ;
-  width: 98%;
-}
-
-.login_par{
+.login_form {
   display: flex;
+  flex-direction: column;
+  gap: 20px;
   width: 100%;
+}
+
+.login_input {
+  position: relative;
+  width: 100%;
+}
+
+.login_input input {
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  background-color: #f8fafc;
+  transition: all 0.3s ease;
+}
+
+.login_input input:hover {
+  background-color: #fff;
+  border-color: #cbd5e0;
+}
+
+.login_input input:focus {
+  outline: none;
+  border-color: #4299e1;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
+  background-color: #fff;
+}
+
+.login_button {
+  width: 100%;
+  margin: 5px 0;
+}
+
+.login_button button {
+  width: 100%;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  display: flex;
   align-items: center;
   justify-content: center;
+  gap: 10px;
 }
 
-
-.login_button button a{
-  color: black;
-font-size: large;
-font-weight: 600;
-text-decoration:none ;
+.login_button button:first-child {
+  background: #4299e1;
+  color: white;
 }
 
-.login_button #google {
+.login_button button:first-child:hover {
+  background: #3182ce;
+  transform: translateY(-1px);
+}
+
+.login_button button a {
+  color: inherit;
+  text-decoration: none;
+  width: 100%;
+  text-align: center;
+}
+
+.login_par {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 15px;
+  margin: 15px 0;
+}
+
+.login_par::before,
+.login_par::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: #e2e8f0;
+}
+
+.login_par p {
+  color: #718096;
+  font-weight: 500;
+}
+
+#google {
   background: #fff;
-  
-}
-.login_button #google:hover{
-  background: rgba(0,0,0,0.2);
+  border: 2px solid #e2e8f0;
+  color: #4a5568;
 }
 
-.login_button #github{
-  background: rgba(0,0,0,0.7);
-
+#google:hover {
+  background: #f7fafc;
+  border-color: #cbd5e0;
 }
 
-.login_button #github:hover{
-  background: rgba(0,0,0,0.5);
+#github {
+  background: #1a202c;
+  color: white;
 }
 
+#github:hover {
+  background: #2d3748;
+}
 
+/* Responsive Design */
+@media (max-width: 480px) {
+  .login {
+    padding: 30px 20px;
+  }
+
+  .Login_header {
+    font-size: 1.75rem;
+  }
+
+  .login_input input {
+    padding: 12px;
+    font-size: 15px;
+  }
+
+  .login_button button {
+    padding: 12px;
+    font-size: 15px;
+  }
+}
+
+/* Loading/Animation States */
+@keyframes buttonLoading {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+.login_button button:active {
+  transform: translateY(1px);
+}
+
+.login_button.loading button {
+  animation: buttonLoading 1s infinite;
+  pointer-events: none;
+}
+
+/* Error States */
+.login_input.error input {
+  border-color: #fc8181;
+  background-color: #fff5f5;
+}
+
+.login_input.error::after {
+  content: attr(data-error);
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  color: #e53e3e;
+  font-size: 14px;
+}
