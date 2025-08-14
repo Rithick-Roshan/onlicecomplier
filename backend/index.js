@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken';
 
 const app = express();
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: "*",
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     credentials:true
 }));
@@ -142,6 +142,7 @@ app.get('/user-codes', verifyToken, (req, res) => {
     });
 });
 
-app.listen(5000, () => {
-    console.log("Server is running on port 5000");
-});
+export default app;
+// app.listen(5000, () => {
+//     console.log("Server is running on port 5000");
+// });
