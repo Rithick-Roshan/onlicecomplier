@@ -13,10 +13,11 @@ app.use(cors({
 app.use(express.json());
 
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'msipc2004',
-    database: 'code_saver'
+    host: 'bxv5bmwjr95xriibiukk-mysql.services.clever-cloud.com',
+    user: 'uwl9g4bg3fo1f6ye',
+    password: 'VVCTjYeHEPeGUprS7ope',
+    database: 'bxv5bmwjr95xriibiukk',
+    port:'3306'
 });
 
 // JWT Secret
